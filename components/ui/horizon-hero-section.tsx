@@ -7,9 +7,25 @@ const STYLES = `
   .cornelio-hero-wrap {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 100svh;
     overflow: hidden;
     background: #1a0a04;
+  }
+  @media (max-width: 767px) {
+    .cornelio-hero-wrap {
+      height: 75svh;
+    }
+    .cornelio-title {
+      font-size: clamp(60px, 18vw, 100px) !important;
+    }
+    .cornelio-subtitle {
+      font-size: 14px !important;
+      margin-bottom: 28px !important;
+    }
+    .cornelio-btn-primary, .cornelio-btn-secondary {
+      padding: 12px 28px !important;
+      font-size: 10px !important;
+    }
   }
   .cornelio-overlay {
     position: absolute;
