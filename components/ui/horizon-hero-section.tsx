@@ -213,6 +213,13 @@ export function HorizonHero({ waLink, onMenuClick }: HorizonHeroProps) {
 
         <div className="cornelio-overlay" />
         <div className="cornelio-overlay-vignette" />
+        {/* Cubre watermark esquina inferior derecha */}
+        <div style={{
+          position: "absolute", bottom: 0, right: 0, zIndex: 3,
+          width: 180, height: 70,
+          background: "linear-gradient(135deg, transparent 30%, rgba(10,4,2,0.95) 100%)",
+          pointerEvents: "none",
+        }} />
 
         <div className="cornelio-content">
           <p ref={eyebrowRef} className="cornelio-eyebrow">✦ Buenos Aires · Palermo · dal 1924 ✦</p>

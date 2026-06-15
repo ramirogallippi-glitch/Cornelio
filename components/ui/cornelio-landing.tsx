@@ -76,6 +76,7 @@ function Navbar() {
     <>
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 40,
+        width: "100%", boxSizing: "border-box", margin: 0,
         padding: isMobile ? "14px 20px" : "16px 48px",
         display: "flex", alignItems: "center", justifyContent: "space-between",
         backgroundColor: scrolled || menuOpen ? "rgba(253,246,236,0.97)" : "transparent",
