@@ -509,8 +509,8 @@ export default function CorneliоLanding() {
         waLink={waLink("Hola! Quisiera reservar una mesa en Cornelio.")}
         onMenuClick={() => document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" })}
       />
-      <GallerySection />
       <MenuSection />
+      <GallerySection />
       <StoriaSection />
       <CtaSection />
       <Footer />
