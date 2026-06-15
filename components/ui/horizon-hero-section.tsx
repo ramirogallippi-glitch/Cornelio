@@ -184,6 +184,21 @@ export function HorizonHero({ waLink, onMenuClick }: HorizonHeroProps) {
   const subtitleRef = useRef<HTMLDivElement>(null)
   const ctaRef      = useRef<HTMLDivElement>(null)
   const scrollRef   = useRef<HTMLDivElement>(null)
+  const videoRef    = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const vid = videoRef.current
+    if (!vid) return
+    vid.muted = true
+    const attempt = () => vid.play().catch(() => {})
+    attempt()
+    document.addEventListener("touchstart", attempt, { once: true })
+    document.addEventListener("click", attempt, { once: true })
+    return () => {
+      document.removeEventListener("touchstart", attempt)
+      document.removeEventListener("click", attempt)
+    }
+  }, [])
 
   useEffect(() => {
     const tl = gsap.timeline({ delay: 0.4 })
@@ -215,6 +230,7 @@ export function HorizonHero({ waLink, onMenuClick }: HorizonHeroProps) {
 
         {/* Video de fondo */}
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
