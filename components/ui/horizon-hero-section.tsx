@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 import { gsap } from 'gsap'
 
 const STYLES = `
@@ -185,6 +185,7 @@ export function HorizonHero({ waLink, onMenuClick }: HorizonHeroProps) {
   const ctaRef      = useRef<HTMLDivElement>(null)
   const scrollRef   = useRef<HTMLDivElement>(null)
   const videoRef    = useRef<HTMLVideoElement>(null)
+  const [videoReady, setVideoReady] = useState(false)
 
   useEffect(() => {
     const vid = videoRef.current
@@ -237,11 +238,14 @@ export function HorizonHero({ waLink, onMenuClick }: HorizonHeroProps) {
           playsInline
           preload="auto"
           {...{ "webkit-playsinline": "true" } as any}
+          onPlaying={() => setVideoReady(true)}
           style={{
             position: "absolute", inset: 0, width: "100%", height: "100%",
             objectFit: "cover", objectPosition: "center top",
             transform: "scale(1.12)", transformOrigin: "center top",
-            zIndex: 1
+            zIndex: 1,
+            opacity: videoReady ? 1 : 0,
+            transition: "opacity 0.6s ease",
           }}
         >
           <source src="/podes_hacer_videos_.mp4" type="video/mp4" />
