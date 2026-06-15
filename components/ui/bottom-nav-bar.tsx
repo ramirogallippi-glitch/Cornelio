@@ -22,16 +22,13 @@ export function BottomNavBar() {
   }
 
   return (
+    <div style={{ position: "fixed", top: 16, left: 0, right: 0, zIndex: 50, display: "flex", justifyContent: "center", pointerEvents: "none" }}>
     <motion.nav
       initial={{ y: 40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 280, damping: 28, delay: 0.8 }}
       style={{
-        position: "fixed",
-        bottom: 20,
-        left: "50%",
-        transform: "translateX(-50%)",
-        zIndex: 50,
+        pointerEvents: "all",
         backgroundColor: "rgba(26, 16, 8, 0.88)",
         backdropFilter: "blur(16px)",
         border: "1px solid rgba(201, 168, 76, 0.3)",
@@ -100,6 +97,7 @@ export function BottomNavBar() {
         )
       })}
     </motion.nav>
+    </div>
   )
 }
 

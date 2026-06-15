@@ -205,7 +205,9 @@ export function HorizonHero({ waLink, onMenuClick }: HorizonHeroProps) {
           playsInline
           style={{
             position: "absolute", inset: 0, width: "100%", height: "100%",
-            objectFit: "cover", objectPosition: "center", zIndex: 1
+            objectFit: "cover", objectPosition: "center top",
+            transform: "scale(1.12)", transformOrigin: "center top",
+            zIndex: 1
           }}
         >
           <source src="/podes_hacer_videos_.mp4" type="video/mp4" />
@@ -213,13 +215,6 @@ export function HorizonHero({ waLink, onMenuClick }: HorizonHeroProps) {
 
         <div className="cornelio-overlay" />
         <div className="cornelio-overlay-vignette" />
-        {/* Cubre watermark esquina inferior derecha */}
-        <div style={{
-          position: "absolute", bottom: 0, right: 0, zIndex: 3,
-          width: 180, height: 70,
-          background: "linear-gradient(135deg, transparent 30%, rgba(10,4,2,0.95) 100%)",
-          pointerEvents: "none",
-        }} />
 
         <div className="cornelio-content">
           <p ref={eyebrowRef} className="cornelio-eyebrow">✦ Buenos Aires · Palermo · dal 1924 ✦</p>

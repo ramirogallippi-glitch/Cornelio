@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { HorizonHero } from "./horizon-hero-section"
-import { BottomNavBar } from "./bottom-nav-bar"
+import { TopNavBar } from "./top-nav-bar"
 import { MapPin, Phone, Mail, Clock, ChevronLeft, ChevronRight, UtensilsCrossed, Share2, Heart } from "lucide-react"
 
 /* ── Paleta ── */
@@ -233,25 +233,25 @@ const menuData = [
   {
     categoria: "Antipasti", color: C.terracota,
     platos: [
-      { nombre: "Burrata della Nonna", desc: "Burrata fresca con tomates asados, albahaca y aceite de trufa negra", precio: "$9.800" },
-      { nombre: "Carpaccio di Manzo", desc: "Finas láminas de lomo crudo, rúcula, alcaparras y parmigiano reggiano 36 meses", precio: "$12.400" },
-      { nombre: "Crostini al Tartufo", desc: "Pan artesanal tostado, crema de hongos porcini y láminas de trufa de temporada", precio: "$8.200" },
+      { nombre: "Burrata della Nonna", desc: "Burrata fresca con tomates asados, albahaca y aceite de trufa negra", precio: "$9.800", img: "https://images.unsplash.com/photo-1608897013039-887f21d8c804?w=300&q=80" },
+      { nombre: "Carpaccio di Manzo", desc: "Finas láminas de lomo crudo, rúcula, alcaparras y parmigiano reggiano 36 meses", precio: "$12.400", img: "https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=300&q=80" },
+      { nombre: "Crostini al Tartufo", desc: "Pan artesanal tostado, crema de hongos porcini y láminas de trufa de temporada", precio: "$8.200", img: "https://images.unsplash.com/photo-1541014741259-de529411b96a?w=300&q=80" },
     ]
   },
   {
     categoria: "Pasta Fatta da Noi", color: C.salvia,
     platos: [
-      { nombre: "Tagliatelle al Ragù", desc: "Pasta fresca tirada a mano con ragù de ternera y panceta, cocido ocho horas", precio: "$14.500" },
-      { nombre: "Tortellini in Brodo", desc: "Rellenos de ricotta y nuez moscada en caldo de gallina de campo con hierbas finas", precio: "$13.200" },
-      { nombre: "Pappardelle ai Funghi", desc: "Pasta al huevo con hongos porcini, manteca de tomillo y virutas de parmesano", precio: "$15.800" },
+      { nombre: "Tagliatelle al Ragù", desc: "Pasta fresca tirada a mano con ragù de ternera y panceta, cocido ocho horas", precio: "$14.500", img: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=300&q=80" },
+      { nombre: "Tortellini in Brodo", desc: "Rellenos de ricotta y nuez moscada en caldo de gallina de campo con hierbas finas", precio: "$13.200", img: "https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=300&q=80" },
+      { nombre: "Pappardelle ai Funghi", desc: "Pasta al huevo con hongos porcini, manteca de tomillo y virutas de parmesano", precio: "$15.800", img: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=300&q=80" },
     ]
   },
   {
     categoria: "Secondi", color: C.vino,
     platos: [
-      { nombre: "Ossobuco alla Milanese", desc: "Jarrete de ternera estofado con gremolata, azafrán y risotto alla parmigiana", precio: "$22.500" },
-      { nombre: "Branzino al Forno", desc: "Róbalo entero al horno con hierbas mediterráneas, limón y aceite de oliva extra virgen", precio: "$19.800" },
-      { nombre: "Agnello in Crosta", desc: "Rack de cordero en costra de hierbas, jus de vino tinto y puré de raíces de invierno", precio: "$24.200" },
+      { nombre: "Ossobuco alla Milanese", desc: "Jarrete de ternera estofado con gremolata, azafrán y risotto alla parmigiana", precio: "$22.500", img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=300&q=80" },
+      { nombre: "Branzino al Forno", desc: "Róbalo entero al horno con hierbas mediterráneas, limón y aceite de oliva extra virgen", precio: "$19.800", img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=300&q=80" },
+      { nombre: "Agnello in Crosta", desc: "Rack de cordero en costra de hierbas, jus de vino tinto y puré de raíces de invierno", precio: "$24.200", img: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=300&q=80" },
     ]
   },
 ]
@@ -293,16 +293,23 @@ function MenuSection() {
             transition={{ duration: 0.3 }}>
             {cat.platos.map((p, i) => (
               <div key={p.nombre}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start",
-                  padding: isMobile ? "20px 0" : "26px 0", gap: isMobile ? 12 : 24 }}>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                      <div style={{ width: 5, height: 5, borderRadius: "50%", background: cat.color, flexShrink: 0 }} />
-                      <h3 style={{ fontFamily: serif, fontStyle: "italic", fontSize: isMobile ? 17 : 20, fontWeight: 600, color: C.testo }}>{p.nombre}</h3>
-                    </div>
-                    <p style={{ fontFamily: sans, fontSize: isMobile ? 12 : 13, color: C.testoSuave, lineHeight: 1.7, paddingLeft: 13 }}>{p.desc}</p>
+                <div style={{ display: "flex", alignItems: "center",
+                  padding: isMobile ? "16px 0" : "22px 0", gap: isMobile ? 14 : 24 }}>
+                  {/* Foto */}
+                  <div style={{ flexShrink: 0, width: isMobile ? 72 : 96, height: isMobile ? 72 : 96,
+                    borderRadius: 8, overflow: "hidden",
+                    border: `2px solid ${cat.color}30` }}>
+                    <img src={p.img} alt={p.nombre}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                   </div>
-                  <span style={{ fontFamily: serif, fontSize: isMobile ? 15 : 17, color: cat.color, fontWeight: 700, whiteSpace: "nowrap", marginTop: 2 }}>{p.precio}</span>
+                  {/* Texto */}
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8, marginBottom: 6 }}>
+                      <h3 style={{ fontFamily: serif, fontStyle: "italic", fontSize: isMobile ? 16 : 19, fontWeight: 600, color: C.testo, lineHeight: 1.2 }}>{p.nombre}</h3>
+                      <span style={{ fontFamily: serif, fontSize: isMobile ? 14 : 16, color: cat.color, fontWeight: 700, whiteSpace: "nowrap", flexShrink: 0 }}>{p.precio}</span>
+                    </div>
+                    <p style={{ fontFamily: sans, fontSize: isMobile ? 12 : 13, color: C.testoSuave, lineHeight: 1.7 }}>{p.desc}</p>
+                  </div>
                 </div>
                 {i < cat.platos.length - 1 && <div style={{ height: 1, background: `linear-gradient(to right, transparent, ${cat.color}33, transparent)` }} />}
               </div>
@@ -337,9 +344,6 @@ function StoriaSection() {
           <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80"
             alt="Salón de Cornelio"
             style={{ width: "100%", aspectRatio: isMobile ? "16/9" : "4/5", objectFit: "cover", display: "block", borderRadius: 4 }} />
-          <div style={{ position: "absolute", top: 10, left: -10, right: 10, bottom: -10,
-            border: `1.5px solid ${C.oro}45`, borderRadius: 6, pointerEvents: "none",
-            display: isMobile ? "none" : "block" }} />
           <div style={{ position: "absolute", bottom: isMobile ? 14 : 24,
             right: isMobile ? 14 : -18,
             background: C.vino, padding: isMobile ? "12px 16px" : "16px 20px",
@@ -500,7 +504,7 @@ function Footer() {
 export default function CorneliоLanding() {
   return (
     <main style={{ background: C.crema, minHeight: "100vh" }}>
-      <Navbar />
+      <TopNavBar />
       <HorizonHero
         waLink={waLink("Hola! Quisiera reservar una mesa en Cornelio.")}
         onMenuClick={() => document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" })}
@@ -510,7 +514,6 @@ export default function CorneliоLanding() {
       <StoriaSection />
       <CtaSection />
       <Footer />
-      <BottomNavBar />
     </main>
   )
 }
